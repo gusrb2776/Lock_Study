@@ -9,13 +9,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RedisConfig {
 
+
     private static final String REDISSON_HOST_PREFIX = "redis://";
 
     @Bean
-    public RedissonClient redisson() {
+    public RedissonClient redissonClient() {
         Config config = new Config();
-        // 기본적으로 redis는 redis://localhost:6379인데 그걸 가르치케 설정하는거임.
-        config.useSingleServer().setAddress(REDISSON_HOST_PREFIX + "localhost:6379");
+        config.useSingleServer()
+                .setAddress(REDISSON_HOST_PREFIX + "localhost:6379");
         return Redisson.create(config);
     }
 }
